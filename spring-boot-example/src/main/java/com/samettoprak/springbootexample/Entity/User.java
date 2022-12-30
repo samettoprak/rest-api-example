@@ -19,4 +19,8 @@ public class User {
     private boolean enabled;
     List<Channel> channels;
     List<Role> roles;
+
+    public boolean getEnabled() {
+        return enabled;
+    }
 }
