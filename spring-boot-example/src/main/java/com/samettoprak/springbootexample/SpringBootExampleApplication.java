@@ -29,14 +29,17 @@ public class SpringBootExampleApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User newUser = new User(null,"topraksamet41@gmail.com","Samet","123",true,null,null);
+		/*User newUser = new User(null,"topraksamet41@gmail.com","Samet","123",true,null,null);
 		userRepository.save(newUser);
 		User secondUser = new User(null,"burhankose@gmail.com","Burhan","1234",true,null,null);
 		userRepository.save(secondUser);
 		User owner = userRepository.findByMail("topraksamet41@gmail.com").get(0);
 		List<User> liste = userRepository.findAll();
 		Channel newChannel = new Channel(null,"Trakya CENG", LocalDateTime.now(),owner,liste,null);
-		channelRepository.save(newChannel);
+		channelRepository.save(newChannel);*/
+		User owner = userRepository.findByMail("topraksamet41@gmail.com").get(0);
+		var channels = channelRepository.findByNameAndOwner("Trakya CENG", owner);
+		System.out.println(channels);
 
 
 
