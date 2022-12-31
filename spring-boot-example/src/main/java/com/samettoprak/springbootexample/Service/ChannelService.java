@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ChannelService {
     Channel updateChannel(Channel channel);
-    Channel sendMessageToChannel(Message message, Channel channel);
-    Channel removeMessageFromChannel(Message message, Channel channel);
+    Channel sendMessageToChannel(Message message, String channelId);
+    Channel removeMessageFromChannel(Message message, String channelId);
     Channel addUserToChannel(User user, Channel channel);
     List<Channel> getAllChannels();
     Channel saveChannel(Channel channel);
