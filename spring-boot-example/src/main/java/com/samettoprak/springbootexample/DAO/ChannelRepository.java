@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ChannelRepository extends MongoRepository<Channel,String>{
     List<Channel> findByNameAndOwner(String name, User owner);
+
 }
