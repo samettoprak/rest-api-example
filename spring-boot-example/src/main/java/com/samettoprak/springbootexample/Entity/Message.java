@@ -1,5 +1,6 @@
 package com.samettoprak.springbootexample.Entity;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -16,5 +17,6 @@ public class Message {
     @Id
     private String id;
     private LocalDateTime postDate;
+    @NotNull
     private String content;
 }
