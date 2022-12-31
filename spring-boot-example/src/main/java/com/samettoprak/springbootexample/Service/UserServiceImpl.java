@@ -6,8 +6,8 @@ import com.samettoprak.springbootexample.Entity.Channel;
 import com.samettoprak.springbootexample.Entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -37,11 +37,11 @@ public class UserServiceImpl implements UserService{
         //update ederken sanki mailini değiştiremez gibi düşündüğümüz için böyle ilerledik.
         User user1 = userRepository.findByMail(user.getMail());
         if(user1 != null){
-            user1.setName(user.getName());
-            user1.setPassword(user.getPassword());
-            user1.setEnabled(user.getEnabled());
-            user1.setChannels(user.getChannels());
-            user1.setRoles(user.getRoles());
+            if(user.getName()!=null) user1.setName(user.getName());
+            if(user.getPassword()!=null)user1.setPassword(user.getPassword());
+            if(user.getEnabled()!=null)user1.setEnabled(user.getEnabled());
+            if(user.getChannels()!=null)user1.setChannels(user.getChannels());
+            if(user.getRoles()!=null)user1.setRoles(user.getRoles());
             userRepository.save(user1);
         }
         return user1;
@@ -58,8 +58,22 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User addChannelToUser(User user, Channel channel) {
-       user.getChannels().add(channel);
+        if (user.getChannels()==null) {
+            user.setChannels(new ArrayList<>());
+        }
+        user.getChannels().add(channel);
+        userRepository.save(user);
        return user;
+    }
+
+    @Override
+    public String deleteUser(String mail) {
+        try{
+            userRepository.delete(userRepository.findByMail(mail));
+            return "Succsess";
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 
 }

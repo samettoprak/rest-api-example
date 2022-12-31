@@ -11,5 +11,6 @@ public interface UserService {
     User updateUser(User user);
     User removeChannelFromUser(Channel channel,User user);
     User addChannelToUser(User user, Channel channel);
+    String deleteUser(String mail);
 
 }
