@@ -10,13 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/Users")
 public class UserRestController {
-
     UserService userService;
-
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
-
     @GetMapping("/")
     public Response<List<User>> getAllUsers() {
         try {
@@ -29,8 +26,6 @@ public class UserRestController {
             return new Response<>(false, e.getMessage(), null);
         }
     }
-
-
     @GetMapping("/{mail}")
     public Response<User> getUserByName(@PathVariable String mail) {
         try {
@@ -53,7 +48,6 @@ public class UserRestController {
 
         } catch (Exception e) {
             return new Response<>(false, e.getMessage(), null);
-
         }
     }
 
@@ -75,14 +69,12 @@ public class UserRestController {
             if (result.equals("Succsess")) {
                 return new Response<>(true, "Deleted Succsessfully", true);
             }
-            return new Response<>(false,result,false);
+            return new Response<>(false, result, false);
         } catch (Exception e) {
             return new Response<>(false, e.getMessage(), false);
         }
-
     }
 }
-
     /*
     User removeChannelFromUser(Channel channel,User user);
     User addChannelToUser(User user, Channel channel);
