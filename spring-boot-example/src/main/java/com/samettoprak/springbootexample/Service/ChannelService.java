@@ -13,4 +13,5 @@ public interface ChannelService {
     Channel addUserToChannel(User user, Channel channel);
     List<Channel> getAllChannels();
     Channel saveChannel(Channel channel);
+    Channel findById(String channelId);
     }

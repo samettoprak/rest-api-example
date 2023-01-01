@@ -70,4 +70,9 @@ public class ChannelServiceImpl implements ChannelService {
     public Channel saveChannel(Channel channel) {
         return channelRepository.save(channel);
     }
+
+    @Override
+    public Channel findById(String channelId) {
+        return channelRepository.findById(channelId).orElse(null);
+    }
 }

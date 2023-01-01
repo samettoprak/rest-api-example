@@ -1,7 +1,5 @@
 package com.samettoprak.springbootexample.REST;
 
-import com.samettoprak.springbootexample.DAO.MessageRepository;
-import com.samettoprak.springbootexample.Entity.Channel;
 import com.samettoprak.springbootexample.Entity.Message;
 import com.samettoprak.springbootexample.Entity.Response;
 import com.samettoprak.springbootexample.Service.ChannelService;
