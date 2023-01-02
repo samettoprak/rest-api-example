@@ -98,19 +98,18 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public Boolean deleteUserFromChannel(String userId, String channelId) {
-        try {
+    public Channel deleteUserFromChannel(String userId, String channelId) {
             var channel = channelRepository.findById(channelId).orElse(null);
             if(channel!=null){
                 var list = channel.getUsers();
-                list.removeIf(user -> user.getId().equals(userId));
-                channel.setUsers(list);
-                return true;
-            }
-            else return false;
+                if(list!=null){
+                    list.removeIf(user -> user.getId().equals(userId));
+                    channel.setUsers(list);
+                    return channel;
+                }
+                else return null;
 
-        }catch (Exception e){
-            return false;
-        }
+            }
+            else return null;
     }
 }
