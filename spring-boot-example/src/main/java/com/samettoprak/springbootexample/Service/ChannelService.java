@@ -12,7 +12,7 @@ public interface ChannelService {
     Channel removeMessageFromChannel(Message message, String channelId);
     Channel addUserToChannel(User user, Channel channel);
     List<Channel> getAllChannels();
-    Channel saveChannel(Channel channel);
+    Channel addChannel(Channel channel);
     Channel findById(String channelId);
     Boolean deleteChannel(String channelId);
     Channel getChannel(String channelId);

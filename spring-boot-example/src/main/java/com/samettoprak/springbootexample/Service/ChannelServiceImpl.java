@@ -71,7 +71,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public Channel saveChannel(Channel channel) {
+    public Channel addChannel(Channel channel) {
         return channelRepository.save(channel);
     }
 
@@ -105,6 +105,7 @@ public class ChannelServiceImpl implements ChannelService {
                 if(list!=null){
                     list.removeIf(user -> user.getId().equals(userId));
                     channel.setUsers(list);
+                    channelRepository.save(channel);
                     return channel;
                 }
                 else return null;
