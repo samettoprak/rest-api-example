@@ -2,6 +2,7 @@ package com.samettoprak.springbootexample.Service;
 
 import com.samettoprak.springbootexample.DAO.ChannelRepository;
 import com.samettoprak.springbootexample.DAO.MessageRepository;
+import com.samettoprak.springbootexample.DAO.UserRepository;
 import com.samettoprak.springbootexample.Entity.Channel;
 import com.samettoprak.springbootexample.Entity.Message;
 import com.samettoprak.springbootexample.Entity.User;
@@ -13,13 +14,16 @@ import java.util.List;
 
 @Service
 public class ChannelServiceImpl implements ChannelService {
-    ChannelRepository channelRepository;
+    private final ChannelRepository channelRepository;
     private final MessageRepository messageRepository;
+    private final UserRepository userRepository;
 
     public ChannelServiceImpl(ChannelRepository channelRepository,
-                              MessageRepository messageRepository) {
+                              MessageRepository messageRepository,
+                              UserRepository userRepository) {
         this.channelRepository = channelRepository;
         this.messageRepository = messageRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -74,5 +78,39 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public Channel findById(String channelId) {
         return channelRepository.findById(channelId).orElse(null);
+    }
+
+    @Override
+    public Boolean deleteChannel(String channelId) {
+        var result = channelRepository.findById(channelId).orElse(null);
+        try {
+            if (result != null) {
+                channelRepository.delete(result);
+                return true;
+            } else return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    @Override
+    public Channel getChannel(String channelId) {
+        return channelRepository.findById(channelId).orElse(null);
+    }
+
+    @Override
+    public Boolean deleteUserFromChannel(String userId, String channelId) {
+        try {
+            var channel = channelRepository.findById(channelId).orElse(null);
+            if(channel!=null){
+                var list = channel.getUsers();
+                list.removeIf(user -> user.getId().equals(userId));
+                channel.setUsers(list);
+                return true;
+            }
+            else return false;
+
+        }catch (Exception e){
+            return false;
+        }
     }
 }

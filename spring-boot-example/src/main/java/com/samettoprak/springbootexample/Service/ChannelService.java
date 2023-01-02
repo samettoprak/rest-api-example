@@ -14,4 +14,7 @@ public interface ChannelService {
     List<Channel> getAllChannels();
     Channel saveChannel(Channel channel);
     Channel findById(String channelId);
-    }
+    Boolean deleteChannel(String channelId);
+    Channel getChannel(String channelId);
+    Boolean deleteUserFromChannel(String userId,String channelId);
+}
