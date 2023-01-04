@@ -3,6 +3,7 @@ package com.samettoprak.springbootexample.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -18,8 +19,15 @@ import java.util.List;
 public class User {
     @Id
     private String id;
+    @Email
     private String mail;
+    @NotNull
+    @Min(2)
+    @Max(20)
     private String name;
+    @NotNull
+    @Min(8)
+    @Max(50)
     private String password;
     private Boolean enabled;
     List<Channel> channels;
