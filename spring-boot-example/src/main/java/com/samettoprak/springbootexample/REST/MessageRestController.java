@@ -11,8 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/Messages")
 public class MessageRestController {
-    private MessageService messageService;
-    private ChannelService channelService;
+    private final MessageService messageService;
+    private final ChannelService channelService;
     public MessageRestController(MessageService messageService,ChannelService channelService){
         this.messageService=messageService;
         this.channelService=channelService;
